@@ -33,9 +33,9 @@ yarn dev
 ## ⚙️ Endpoints
 
 ### 🔩 Criação de usuário
-* POST http://localhost:3000/users
+#### POST http://localhost:3000/users
 
-#### Request
+* Request
 
 ```http application/json
 {
@@ -44,7 +44,7 @@ yarn dev
   "email": "lucius@teste.com"
 }
 ```
-#### Response
+* Response
 
 ```http application/json
 {
