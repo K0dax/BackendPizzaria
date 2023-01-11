@@ -48,8 +48,8 @@ yarn dev
 
 ```http application/json
 {
+  "id": "28be60b9-b9ba-41f1-b264-3e1e94ba67ac",
   "name": "lucius",
-  "password": "passowrdTeste",
   "email": "lucius@teste.com"
 }
 ```
