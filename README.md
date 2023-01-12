@@ -93,6 +93,26 @@ yarn dev
 }
 ```
 
+### 🔩 Detalhes do Usuário
+
+#### GET http://localhost:3000/me
+
+- Request
+
+```headers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYW5hIiwiZW1haWwiOiJhbmFAYS5jb20iLCJpYXQiOjE2NzM1NTE5MjIsImV4cCI6MTY3NjE0MzkyMiwic3ViIjoiMjhiZTYwYjktYjliYS00MWYxLWIyNjQtM2UxZTk0YmE2N2FjIn0.upUoNYqMaynE1FV4Yk2kA-jGg9d-Zlvoqlva-F4S4js
+```
+
+- Response
+
+```http application/json
+{
+  "id": "28be60b9-b9ba-41f1-b264-3e1e94ba67ac",
+  "name": "lucius",
+  "email": "lucius@teste.com"
+}
+```
+
 ## 🛠️ Construído com
 
 - Typescript
