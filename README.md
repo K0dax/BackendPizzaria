@@ -97,7 +97,9 @@ yarn dev
 
 #### GET http://localhost:3000/me
 
-- Request
+<br>
+
+- Headers
 
 ```headers
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYW5hIiwiZW1haWwiOiJhbmFAYS5jb20iLCJpYXQiOjE2NzM1NTE5MjIsImV4cCI6MTY3NjE0MzkyMiwic3ViIjoiMjhiZTYwYjktYjliYS00MWYxLWIyNjQtM2UxZTk0YmE2N2FjIn0.upUoNYqMaynE1FV4Yk2kA-jGg9d-Zlvoqlva-F4S4js
@@ -111,6 +113,138 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYW5hIiwiZ
   "name": "lucius",
   "email": "lucius@teste.com"
 }
+```
+
+### 🔩 Criar categoria
+
+#### POST http://localhost:3000/category
+
+<br>
+
+- Headers
+
+```headers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYW5hIiwiZW1haWwiOiJhbmFAYS5jb20iLCJpYXQiOjE2NzM1NTE5MjIsImV4cCI6MTY3NjE0MzkyMiwic3ViIjoiMjhiZTYwYjktYjliYS00MWYxLWIyNjQtM2UxZTk0YmE2N2FjIn0.upUoNYqMaynE1FV4Yk2kA-jGg9d-Zlvoqlva-F4S4js
+```
+
+- Request
+
+```application/json
+{
+  "name": "categoria teste"
+}
+```
+
+- Response
+
+```application/json
+{
+	"id": "0a0a5976-bbd7-4cad-98f4-f9c6ec523068",
+	"name": "categoria teste"
+}
+```
+
+### 🔩 Listar categorias
+
+#### GET http://localhost:3000/category
+
+<br>
+
+- Headers
+
+```headers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYW5hIiwiZW1haWwiOiJhbmFAYS5jb20iLCJpYXQiOjE2NzM1NTE5MjIsImV4cCI6MTY3NjE0MzkyMiwic3ViIjoiMjhiZTYwYjktYjliYS00MWYxLWIyNjQtM2UxZTk0YmE2N2FjIn0.upUoNYqMaynE1FV4Yk2kA-jGg9d-Zlvoqlva-F4S4js
+```
+
+- Response
+
+```application/json
+[
+	{
+		"id": "6aecf2e6-fe04-45f6-8d81-8299dd8506f5",
+		"name": "categoria teste"
+	},
+	{
+		"id": "0a0a5976-bbd7-4cad-98f4-f9c6ec523068",
+		"name": "categoria 2"
+	}
+]
+```
+
+### 🔩 Criar produtos
+
+#### POST http://localhost:3000/product
+
+<br>
+
+- Headers
+
+```headers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYW5hIiwiZW1haWwiOiJhbmFAYS5jb20iLCJpYXQiOjE2NzM1NTE5MjIsImV4cCI6MTY3NjE0MzkyMiwic3ViIjoiMjhiZTYwYjktYjliYS00MWYxLWIyNjQtM2UxZTk0YmE2N2FjIn0.upUoNYqMaynE1FV4Yk2kA-jGg9d-Zlvoqlva-F4S4js
+```
+
+- Request
+
+```multipart/form-data
+{
+	"name": "teste",
+	"price": "35",
+	"description": "estou testando",
+	"file": "algumaimg.jpg",
+	"category_id": "6aecf2e6-fe04-45f6-8d81-8299dd8506f5"
+}
+```
+
+- Response
+
+```application/json
+{
+	"id": "4a12f0bd-04c1-480f-9bfb-1e4623171287",
+	"name": "teste",
+	"price": "35",
+	"description": "estou testando",
+	"banner": "e7961f3adbb97432a302ae3bf5fbe27e-algumaimg.jpg",
+	"created_at": "2023-01-17T19:02:41.375Z",
+	"updated_at": "2023-01-17T19:02:41.375Z",
+	"category_id": "6aecf2e6-fe04-45f6-8d81-8299dd8506f5"
+}
+```
+
+### 🔩 Listar produtos pela categoria
+
+<br>
+
+#### GET http://localhost:3000/category/product?category_id=:id
+
+<br>
+
+- Headers
+
+```headers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYW5hIiwiZW1haWwiOiJhbmFAYS5jb20iLCJpYXQiOjE2NzM1NTE5MjIsImV4cCI6MTY3NjE0MzkyMiwic3ViIjoiMjhiZTYwYjktYjliYS00MWYxLWIyNjQtM2UxZTk0YmE2N2FjIn0.upUoNYqMaynE1FV4Yk2kA-jGg9d-Zlvoqlva-F4S4js
+```
+
+- Exemplo:
+
+```application/json
+http://localhost:3000/category/product?category_id=6aecf2e6-fe04-45f6-8d81-8299dd8506f5
+```
+
+- Response
+
+```application/json
+[
+  {
+    "id": "4a12f0bd-04c1-480f-9bfb-1e4623171287",
+    "name": "teste",
+    "price": "35",
+    "description": "estou testando",
+    "banner": "e7961f3adbb97432a302ae3bf5fbe27e-algumaimg.jpg",
+    "created_at": "2023-01-17T19:02:41.375Z",
+    "updated_at": "2023-01-17T19:02:41.375Z",
+    "category_id": "6aecf2e6-fe04-45f6-8d81-8299dd8506f5"
+  }
+]
 ```
 
 ## 🛠️ Construído com
