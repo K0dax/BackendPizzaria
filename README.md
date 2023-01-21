@@ -226,7 +226,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYW5hIiwiZ
 
 - Exemplo:
 
-```application/json
+```http
 http://localhost:3000/category/product?category_id=6aecf2e6-fe04-45f6-8d81-8299dd8506f5
 ```
 
@@ -245,6 +245,285 @@ http://localhost:3000/category/product?category_id=6aecf2e6-fe04-45f6-8d81-8299d
     "category_id": "6aecf2e6-fe04-45f6-8d81-8299dd8506f5"
   }
 ]
+```
+
+### 🔩 Criar pedido
+
+<br>
+
+#### POST http://localhost:3000/order
+
+<br>
+
+- Headers
+
+```headers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYW5hIiwiZW1haWwiOiJhbmFAYS5jb20iLCJpYXQiOjE2NzM1NTE5MjIsImV4cCI6MTY3NjE0MzkyMiwic3ViIjoiMjhiZTYwYjktYjliYS00MWYxLWIyNjQtM2UxZTk0YmE2N2FjIn0.upUoNYqMaynE1FV4Yk2kA-jGg9d-Zlvoqlva-F4S4js
+```
+
+- Request
+
+```application/json
+{
+  "name": "Teste",
+  "table": 3
+}
+```
+
+- Response
+
+```application/json
+{
+	"id": "aeefc2e1-d8e8-43d8-ad5e-2545b1ba7ddc",
+	"table": 3,
+	"status": false,
+	"draft": true,
+	"name": "Teste",
+	"created_at": "2023-01-17T22:01:02.586Z",
+	"updated_at": "2023-01-17T22:01:02.586Z"
+}
+```
+
+#### DELETE http://localhost:3000/order?order_id=:id
+
+<br>
+
+- Headers
+
+```headers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYW5hIiwiZW1haWwiOiJhbmFAYS5jb20iLCJpYXQiOjE2NzM1NTE5MjIsImV4cCI6MTY3NjE0MzkyMiwic3ViIjoiMjhiZTYwYjktYjliYS00MWYxLWIyNjQtM2UxZTk0YmE2N2FjIn0.upUoNYqMaynE1FV4Yk2kA-jGg9d-Zlvoqlva-F4S4js
+```
+
+- Exemplo:
+
+```http
+http://localhost:3000/order?order_id=aeefc2e1-d8e8-43d8-ad5e-2545b1ba7ddc
+```
+
+- Response
+
+```application/json
+{
+	"id": "aeefc2e1-d8e8-43d8-ad5e-2545b1ba7ddc",
+	"table": 3,
+	"status": false,
+	"draft": true,
+	"name": "Teste",
+	"created_at": "2023-01-17T22:01:02.586Z",
+	"updated_at": "2023-01-17T22:01:02.586Z"
+}
+```
+
+### 🔩 Adicionar item ao pedido
+
+#### POST http://localhost:3000/order/add
+
+<br>
+
+- Headers
+
+```headers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYW5hIiwiZW1haWwiOiJhbmFAYS5jb20iLCJpYXQiOjE2NzM1NTE5MjIsImV4cCI6MTY3NjE0MzkyMiwic3ViIjoiMjhiZTYwYjktYjliYS00MWYxLWIyNjQtM2UxZTk0YmE2N2FjIn0.upUoNYqMaynE1FV4Yk2kA-jGg9d-Zlvoqlva-F4S4js
+```
+
+- Request
+
+```application/json
+{
+	"order_id": "e9027376-e5f9-41c7-af86-21fba85a8cbf",
+  "product_id": "5b0ef14d-308f-4805-8a60-68a31f1eeb0a",
+  "amount": 2
+}
+```
+
+- Response
+
+```application/json
+{
+	"id": "2648f456-59f2-4b33-b4e6-6cb6cef275be",
+	"amount": 2,
+	"created_at": "2023-01-17T21:27:17.696Z",
+	"updated_at": "2023-01-17T21:27:17.696Z",
+	"order_id": "e9027376-e5f9-41c7-af86-21fba85a8cbf",
+	"product_id": "5b0ef14d-308f-4805-8a60-68a31f1eeb0a"
+}
+```
+
+### 🔩 Remover item do pedido
+
+#### POST http://localhost:3000/order/remove?item_id=:id
+
+<br>
+
+- Headers
+
+```headers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYW5hIiwiZW1haWwiOiJhbmFAYS5jb20iLCJpYXQiOjE2NzM1NTE5MjIsImV4cCI6MTY3NjE0MzkyMiwic3ViIjoiMjhiZTYwYjktYjliYS00MWYxLWIyNjQtM2UxZTk0YmE2N2FjIn0.upUoNYqMaynE1FV4Yk2kA-jGg9d-Zlvoqlva-F4S4js
+```
+
+- Exemplo:
+
+http://localhost:3000/order/remove?item_id=2648f456-59f2-4b33-b4e6-6cb6cef275be
+
+- Response
+
+```application/json
+{
+	"id": "2648f456-59f2-4b33-b4e6-6cb6cef275be",
+	"amount": 2,
+	"created_at": "2023-01-17T21:27:17.696Z",
+	"updated_at": "2023-01-17T21:27:17.696Z",
+	"order_id": "e9027376-e5f9-41c7-af86-21fba85a8cbf",
+	"product_id": "5b0ef14d-308f-4805-8a60-68a31f1eeb0a"
+}
+```
+
+### 🔩 Enviar o pedido para a cozinha
+
+#### PUT http://localhost:3000/order/send
+
+<br>
+
+- Headers
+
+```headers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYW5hIiwiZW1haWwiOiJhbmFAYS5jb20iLCJpYXQiOjE2NzM1NTE5MjIsImV4cCI6MTY3NjE0MzkyMiwic3ViIjoiMjhiZTYwYjktYjliYS00MWYxLWIyNjQtM2UxZTk0YmE2N2FjIn0.upUoNYqMaynE1FV4Yk2kA-jGg9d-Zlvoqlva-F4S4js
+```
+
+- Request
+
+```application/json
+{
+	"order_id": "8b3d21de-54fb-427c-a98b-32558d2d0c6b"
+}
+```
+
+- Response
+
+```application/json
+{
+	"id": "8b3d21de-54fb-427c-a98b-32558d2d0c6b",
+	"table": 15,
+	"status": false,
+	"draft": false,
+	"name": "caco",
+	"created_at": "2023-01-17T22:00:29.831Z",
+	"updated_at": "2023-01-17T22:00:29.831Z"
+}
+```
+
+### 🔩 Receber todos os pedidos da cozinha
+
+#### GET http://localhost:3000/orders
+
+<br>
+
+- Headers
+
+```headers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYW5hIiwiZW1haWwiOiJhbmFAYS5jb20iLCJpYXQiOjE2NzM1NTE5MjIsImV4cCI6MTY3NjE0MzkyMiwic3ViIjoiMjhiZTYwYjktYjliYS00MWYxLWIyNjQtM2UxZTk0YmE2N2FjIn0.upUoNYqMaynE1FV4Yk2kA-jGg9d-Zlvoqlva-F4S4js
+```
+
+- Response
+
+```application/json
+[
+	{
+		"id": "e9027376-e5f9-41c7-af86-21fba85a8cbf",
+		"table": 9,
+		"status": false,
+		"draft": false,
+		"name": "luiz",
+		"created_at": "2023-01-17T20:52:22.788Z",
+		"updated_at": "2023-01-17T20:52:22.788Z"
+	}
+]
+```
+
+### 🔩 Receber detalhes do pedido
+
+#### GET http://localhost:3000/order/detail?order_id=:id
+
+<br>
+
+- Headers
+
+```headers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYW5hIiwiZW1haWwiOiJhbmFAYS5jb20iLCJpYXQiOjE2NzM1NTE5MjIsImV4cCI6MTY3NjE0MzkyMiwic3ViIjoiMjhiZTYwYjktYjliYS00MWYxLWIyNjQtM2UxZTk0YmE2N2FjIn0.upUoNYqMaynE1FV4Yk2kA-jGg9d-Zlvoqlva-F4S4js
+```
+
+- Exemplo:
+
+```http
+http://localhost:3000/order/detail?order_id=e9027376-e5f9-41c7-af86-21fba85a8cbf
+```
+
+- Response
+
+```application/json
+[
+	{
+		"id": "4bccba4d-1d10-4d50-a80e-8a6c190736db",
+		"amount": 3,
+		"created_at": "2023-01-17T20:53:16.375Z",
+		"updated_at": "2023-01-17T20:53:16.375Z",
+		"order_id": "e9027376-e5f9-41c7-af86-21fba85a8cbf",
+		"product_id": "4a12f0bd-04c1-480f-9bfb-1e4623171287",
+		"product": {
+			"id": "4a12f0bd-04c1-480f-9bfb-1e4623171287",
+			"name": "Teste produto",
+			"price": "35",
+			"description": "estou testando",
+			"banner": "e7961f3adbb97432a302ae3bf5fbe27e-mr.robot.jpg",
+			"created_at": "2023-01-17T19:02:41.375Z",
+			"updated_at": "2023-01-17T19:02:41.375Z",
+			"category_id": "0a0a5976-bbd7-4cad-98f4-f9c6ec523068"
+		},
+		"order": {
+			"id": "e9027376-e5f9-41c7-af86-21fba85a8cbf",
+			"table": 9,
+			"status": false,
+			"draft": false,
+			"name": "luiz",
+			"created_at": "2023-01-17T20:52:22.788Z",
+			"updated_at": "2023-01-17T20:52:22.788Z"
+		}
+	}
+]
+```
+
+### 🔩 Finalizar o pedido
+
+#### PUT http://localhost:3000/order/finish
+
+<br>
+
+- Headers
+
+```headers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYW5hIiwiZW1haWwiOiJhbmFAYS5jb20iLCJpYXQiOjE2NzM1NTE5MjIsImV4cCI6MTY3NjE0MzkyMiwic3ViIjoiMjhiZTYwYjktYjliYS00MWYxLWIyNjQtM2UxZTk0YmE2N2FjIn0.upUoNYqMaynE1FV4Yk2kA-jGg9d-Zlvoqlva-F4S4js
+```
+
+- Request
+
+```application/json
+{
+	"order_id": "8b3d21de-54fb-427c-a98b-32558d2d0c6b"
+}
+```
+
+- Response
+
+```application/json
+{
+	"id": "8b3d21de-54fb-427c-a98b-32558d2d0c6b",
+	"table": 15,
+	"status": true,
+	"draft": false,
+	"name": "marco",
+	"created_at": "2023-01-17T22:00:29.831Z",
+	"updated_at": "2023-01-17T22:00:29.831Z"
+}
 ```
 
 ## 🛠️ Construído com
